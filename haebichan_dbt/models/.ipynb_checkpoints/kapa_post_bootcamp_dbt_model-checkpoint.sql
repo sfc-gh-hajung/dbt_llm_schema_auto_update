@@ -1,0 +1,13 @@
+
+WITH base AS (
+  SELECT GPS_ALT, LAT,LON, TYPE
+  FROM KAPA_VIEW
+  FETCH FIRST 10000 ROWS ONLY
+)
+SELECT 
+  TYPE,
+    avg(GPS_ALT) as avg_GPS_ALT,
+    min(LON) as min_long,
+  MAX(LAT) AS max_lat 
+FROM base 
+GROUP BY TYPE
